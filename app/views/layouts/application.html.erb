@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ApiConsumer</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-light bg-light fixed-top">
+      <div class="container-fluid d-flex justify-content-end">
+        <div>
+          <% if @current_auth_token.present? %>
+            <a href="<%= edit_user_path(id: 1) %>" class="btn btn-outline-primary">Profile</a>
+            <a href="<%= user_path(id: 1) %>" class="btn btn-outline-primary mx-2" data-method="delete">Sign Out</a>
+          <% else %>
+            <a href="<%= new_authentication_path %>" class="btn btn-outline-primary">Sign In</a>
+            <a href="<%= new_user_path %>" class="btn btn-outline-primary mx-2">Sign Up</a>
+          <% end %>
+        </div>
+      </div>
+    </nav>
+    <%= yield %>
+  </body>
+</html>
